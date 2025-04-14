@@ -1,0 +1,35 @@
+name: Deploy Infraestrutura Azure com Terraform
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  terraform:
+    name: Terraform no Azure
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 Checkout do repositório
+        uses: actions/checkout@v3
+
+      - name: ⚙️ Instalar Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.5.0
+
+      - name: 🔐 Login no Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: 📁 Inicializar Terraform
+        run: terraform init
+
+      - name: 🔍 Plano do Terraform
+        run: terraform plan
+
+      - name: 🚀 Aplicar Terraform
+        run: terraform apply -auto-approve
