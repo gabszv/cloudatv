@@ -3,7 +3,7 @@ name: Deploy Azure App
 on:
   push:
     branches:
-      - main  # ou "master", se sua branch principal for essa
+      - main  # ou "master", se for sua branch principal
 
 jobs:
   build-and-deploy:
@@ -16,10 +16,7 @@ jobs:
     - name: Login no Azure
       uses: azure/login@v1
       with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Zipar o conteúdo da raiz do projeto
       run: zip -r site.zip . -x ".git/*" -x ".github/*"
