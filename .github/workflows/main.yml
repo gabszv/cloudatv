@@ -13,12 +13,12 @@ jobs:
     - name: Checkout do código
       uses: actions/checkout@v3
 
-    - name: Zipar o conteúdo da raiz do projeto
-      run: zip -r site.zip . -x ".git/*" -x ".github/*"
+    - name: Ir para a pasta do projeto
+      run: cd cloudatv && zip -r ../site.zip . -x ".terraform/*" -x "*.tfstate*" -x "*.exe" -x ".git/*" -x ".github/*"
 
     - name: Deploy no Azure
       uses: azure/webapps-deploy@v2
       with:
         app-name: app-prontuario123  # Nome da sua aplicação no Azure
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}  # Credenciais do perfil de publicação
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: site.zip
