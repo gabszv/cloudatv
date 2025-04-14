@@ -1,35 +1,32 @@
-name: Deploy Infraestrutura Azure com Terraform
+name: Deploy Azure App
 
 on:
   push:
     branches:
-      - main
-  workflow_dispatch:
+      - main  # ou "master", se sua branch principal for essa
 
 jobs:
-  terraform:
-    name: Terraform no Azure
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📦 Checkout do repositório
-        uses: actions/checkout@v3
+    - name: Checkout do código
+      uses: actions/checkout@v3
 
-      - name: ⚙️ Instalar Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.5.0
+    - name: Login no Azure
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
 
-      - name: 🔐 Login no Azure
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Zipar o conteúdo da raiz do projeto
+      run: zip -r site.zip . -x ".git/*" -x ".github/*"
 
-      - name: 📁 Inicializar Terraform
-        run: terraform init
-
-      - name: 🔍 Plano do Terraform
-        run: terraform plan
-
-      - name: 🚀 Aplicar Terraform
-        run: terraform apply -auto-approve
+    - name: Deploy no Azure
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: app-casapronta  # Nome da aplicação criado no Terraform
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: site.zip
