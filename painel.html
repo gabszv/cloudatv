@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clínica Movimentar</title>
+  <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <header class="logo-area">
+        <img src="logo.png" alt="Logo da clínica" class="logo">
+        <h1>CLÍNICA DE<br><span class="green">FISIOTERAPIA</span> <span class="blue">MOVIMENTAR</span></h1>
+      </header>
+
+      <main>
+        <h2 class="titulo-principal">Digitalização de Prontuários</h2>
+        <p class="subtitulo">Acesse e gerencie os prontuários dos pacientes</p>
+
+        <div class="form-area">
+          <form id="prontuario-form">
+            <label for="nome-paciente">Nome do Paciente</label>
+            <input type="text" id="nome-paciente" name="nome-paciente" required>
+
+            <label for="data-paciente">Data</label>
+            <input type="date" id="data-paciente" name="data-paciente" required>
+
+            <label for="descricao-paciente">Descrição</label>
+            <input type="text" id="descricao-paciente" name="descricao-paciente" required>
+
+            <button type="submit">Adicionar Prontuário</button>
+          </form>
+        </div>
+
+        <section class="prontuarios">
+          <h3>Prontuários</h3>
+          <div class="lista" id="lista-prontuarios">
+    
+            <div class="prontuario-item">
+              <div>
+                <p><strong>Nome:</strong> João Pereira</p>
+                <p><strong>Data:</strong> 2023-10-15</p>
+                <p><strong>Descrição:</strong> Reabilitação pós-cirúrgica</p>
+              </div>
+              <div>
+                <span class="more-options" onclick="showOptions(1)">...</span>
+                <div class="options-menu" id="options-menu-1" style="display: none;">
+                  <button onclick="editProntuario(1)">Editar</button>
+                  <button onclick="deleteProntuario(1)">Deletar</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="prontuario-item">
+              <div>
+                <p><strong>Nome:</strong> Ana Costa</p>
+                <p><strong>Data:</strong> 2023-09-05</p>
+                <p><strong>Descrição:</strong> Tratamento de dor lombar</p>
+              </div>
+              <div>
+                <span class="more-options" onclick="showOptions(2)">...</span>
+                <div class="options-menu" id="options-menu-2" style="display: none;">
+                  <button onclick="editProntuario(2)">Editar</button>
+                  <button onclick="deleteProntuario(2)">Deletar</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="prontuario-item">
+              <div>
+                <p><strong>Nome:</strong> Lucas Almeida</p>
+                <p><strong>Data:</strong> 2023-08-22</p>
+                <p><strong>Descrição:</strong> Fisioterapia respiratória</p>
+              </div>
+              <div>
+                <span class="more-options" onclick="showOptions(3)">...</span>
+                <div class="options-menu" id="options-menu-3" style="display: none;">
+                  <button onclick="editProntuario(3)">Editar</button>
+                  <button onclick="deleteProntuario(3)">Deletar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="script2.js"></script>
+</body>
+</html>

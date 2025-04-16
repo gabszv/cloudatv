@@ -1,71 +1,240 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+* {
     margin: 0;
     padding: 0;
-  }
-  
-  .container {
-    width: 90%;
-    max-width: 600px;
-    margin: 40px auto;
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-  }
-  
-  h1 {
-    text-align: center;
-    color: #2e7d32;
-  }
-  
-  p {
-    text-align: center;
-    font-size: 1.1rem;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    padding: 40px;
+    max-width: 700px;
+    width: 100%;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 60px;
+    height: auto;
+}
+
+.logo-area h1 {
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.green {
+    color: #249372;
+}
+
+.blue {
+    color: #2461a3;
+    font-weight: bold;
+}
+
+.titulo-principal {
+    font-size: 22px;
+    color: #1a3f32;
+    margin-top: 10px;
+}
+
+.subtitulo {
     color: #555;
-  }
-  
-  .login-form {
+    margin-bottom: 20px;
+}
+
+.form-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+form {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    width: 45%;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 20px 0;
-  }
-  
-  .login-form input {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+form label {
+    font-size: 14px;
+    color: #333;
+}
+
+form input {
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .login-form button {
+    border-radius: 8px;
+}
+
+form button {
+    margin-top: 10px;
     padding: 10px;
-    background-color: #2e7d32;
+    background-color: #145f4c;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-weight: bold;
     cursor: pointer;
-  }
-  
-  .login-form button:hover {
-    background-color: #1b5e20;
-  }
-  
-  h2 {
-    margin-top: 30px;
-    color: #333;
-  }
-  
-  .records {
-    list-style: none;
-    padding-left: 0;
-  }
-  
-  .records li {
-    background-color: #e8f5e9;
-    margin-bottom: 8px;
+}
+
+form button:hover {
+    background-color: #0f4c3c;
+}
+
+.medica {
+    width: 50%;
+    max-width: 250px;
+}
+
+#error-msg {
+    background-color: #f8d7da;
+    color: #721c24;
     padding: 10px;
-    border-radius: 5px;
-  }
-  
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border: 1px solid #f5c6cb;
+    display: none;
+}
+
+#error-msg.show {
+    display: block;
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #145f4c;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#loading-screen p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #145f4c;
+}
+
+.senha-container {
+    position: relative;
+}
+
+.show-password-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Novo botão de menu de configurações */
+#menu-config {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+#menu-config div {
+    width: 35px;
+    height: 4px;
+    background-color: #145f4c;
+    margin: 6px 0;
+    transition: 0.3s;
+}
+
+#slide-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #145f4c;
+    color: white;
+    transition: left 0.3s ease;
+    padding-top: 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#slide-menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    display: block;
+    padding: 15px;
+    border-bottom: 1px solid #fff;
+}
+
+#slide-menu a:hover {
+    background-color: #0f4c3c;
+}
+
+#slide-menu.show {
+    left: 0;
+}
+
+/* Efeito ao clicar no menu hambúrguer */
+#menu-config.active div:nth-child(1) {
+    transform: rotate(-45deg);
+    top: 10px;
+}
+
+#menu-config.active div:nth-child(2) {
+    opacity: 0;
+}
+
+#menu-config.active div:nth-child(3) {
+    transform: rotate(45deg);
+    top: -10px;
+}

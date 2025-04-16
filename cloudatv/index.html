@@ -1,27 +1,46 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Clínica Movimentar</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clínica Movimentar</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Clínica de Fisioterapia Movimentar a minha pica</h1>
-    <p>Acesse seus prontuários digitalizados de forma segura</p>
+    <div class="container">
+        <div class="card">
+            <header class="logo-area">
+                <img src="logo.png" alt="Logo da clínica" class="logo">
+                <h1>CLÍNICA DE<br><span class="green">FISIOTERAPIA</span> <span class="blue">MOVIMENTAR</span></h1>
+            </header>
 
-    <form class="login-form">
-      <input type="text" placeholder="Usuário" required>
-      <input type="password" placeholder="Senha" required>
-      <button type="submit">Entrar</button>
-    </form>
+            <main>
+                <h2 class="titulo-principal">Clínica de Fisioterapia Movimentar</h2>
+                <p class="subtitulo">Acesse seus prontuários digitalizados de forma segura</p>
 
-    <h2>Prontuários</h2>
-    <ul class="records">
-      <li>Paciente A - 12/04/2025 - Lombalgia/Gabrielvictor</li>
-      <li>Paciente B - 10/04/2025 - Torção no tornozelo</li>
-      <li>Paciente C - 08/04/2025 - Hérnia de disco</li>
-    </ul>
-  </div>
+                <div class="form-area">
+                    <form id="login-form">
+                        <div id="error-msg" class="hidden">Usuário ou senha incorretos!</div>
+
+                        <label for="usuario">Usuário</label>
+                        <input type="text" id="usuario" name="usuario" required>
+
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha" name="senha" required>
+
+                        <button type="submit">Entrar</button>
+                    </form>
+
+                    <img src="medica.jpg" alt="Profissional da saúde" class="medica">
+                </div>
+            </main>
+        </div>
+    </div>
+    <div id="loading-screen">
+        <div class="spinner"></div>
+        <p>Dá excelente aí professor 😎</p>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
